@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp7
+{
+    class Program
+    {
+
+
+        enum Fare
+        {
+            Plane = 200,
+            Train = 80,
+            Bus = 50
+        }
+        
+        
+        static void Main(string[] args)
+        {
+            Program p = new Program();
+            p.Go();
+            Console.ReadKey();
+        }
+
+        private void Go()
+        {
+            
+            bool result = true;
+            do
+            {
+                int trips_n = 0;
+                int total_1 = 0;
+                int trips = 0;
+                int total = 0;
+                var values = Enum.GetValues(typeof(Fare));
+                foreach (var val in values)
+                {
+                    Console.Write("How many trips through {0}:", val);
+                    trips_n = int.Parse(Console.ReadLine());
+                    total_1 = trips_n * (int)val;
+                    total = total + total_1;
+                    trips = trips + trips_n;
+                    //Console.WriteLine(total_1);
+                    //Console.WriteLine(total);
+             
+                }
+                string answer = "N";
+                Console.WriteLine("Total number of Trips:{0} Total money spent:{1} average:{2}",trips,total,total/trips);
+                do
+                {   
+                    Console.Write("Do you want to coninue?");
+                    answer = Console.ReadLine();
+
+
+                } while (answer != "Y" && answer != "N"&& answer != "y" && answer != "n");
+                switch(answer)
+                {
+                    case "Y":  case "y":
+                        result = true;
+                        break;
+                    /*case "N":
+                        result = false;
+                        break;
+                    case "y":
+                        result = true;
+                        break;*/
+                    case "n": case "N":
+                        result = false;
+                        break;
+                    default:
+                        break;
+                }
+
+            } while (result);
+
+        }       
+       
+    }
+}
